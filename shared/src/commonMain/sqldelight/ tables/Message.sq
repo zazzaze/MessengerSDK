@@ -1,0 +1,33 @@
+CREATE TABLE Message (
+ id TEXT PRIMARY KEY NOT NULL,
+ fromId TEXT NOT NULL,
+ sendTime INTEGER NOT NULL,
+ textContent TEXT,
+ chatId TEXT NOT NULL,
+ type TEXT NOT NULL,
+ status INTEGER NOT NULL
+);
+
+getMessagesFromChat:
+SELECT * FROM Message WHERE chatId == :chatId;
+
+getMessagesBatchFromChat:
+SELECT * FROM Message WHERE chatId == :chatId ORDER BY sendTime DESC LIMIT :limit OFFSET :offset;
+
+getLastMessageFromChat:
+SELECT * FROM Message WHERE chatId == :chatId ORDER BY sendTime DESC LIMIT 1;
+
+getLastMessagesFromChat:
+SELECT * FROM Message WHERE chatId == :chatId ORDER BY sendTime DESC LIMIT :limit;
+
+getLastMessageFromChatFromUser:
+SELECT * FROM Message WHERE chatId == :chatId AND fromId == :userId ORDER BY sendTime DESC LIMIT 1;
+
+getMessagesWithStatus:
+SELECT * FROM Message WHERE status == :status;
+
+addMessage:
+INSERT OR REPLACE INTO Message(id, fromId, sendTime, textContent, chatId, type, status) VALUES (?, ?, ?, ?, ?, ?, ?);
+
+clear:
+DELETE FROM Message;

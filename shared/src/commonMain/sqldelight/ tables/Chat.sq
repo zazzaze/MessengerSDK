@@ -1,0 +1,20 @@
+CREATE TABLE Chat (
+    id TEXT PRIMARY KEY NOT NULL,
+    withUserId TEXT,
+    type TEXT NOT NULL
+);
+
+addChat:
+INSERT OR REPLACE INTO Chat VALUES (?, ?, ?);
+
+getAllChats:
+SELECT * FROM Chat;
+
+getAllChatsByType:
+SELECT * FROM Chat WHERE type == :type;
+
+getChatById:
+SELECT * FROM Chat WHERE id == :chatId;
+
+clear:
+DELETE FROM Chat;

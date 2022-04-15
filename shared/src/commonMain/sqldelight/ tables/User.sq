@@ -1,0 +1,17 @@
+CREATE TABLE User (
+    id TEXT PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL,
+    isCurrent INTEGER NOT NULL
+);
+
+getUser:
+SELECT * FROM User WHERE id == :id LIMIT 1;
+
+addUser:
+INSERT OR REPLACE INTO User(id, name, isCurrent) VALUES (?, ?, ?);
+
+getCurrentUser:
+SELECT * FROM User WHERE isCurrent == 1;
+
+clear:
+DELETE FROM User;

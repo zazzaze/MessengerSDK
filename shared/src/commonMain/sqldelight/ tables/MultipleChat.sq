@@ -1,0 +1,14 @@
+CREATE TABLE MutlipleChat (
+    id TEXT NOT NULL PRIMARY KEY ,
+    chatId TEXT NOT NULL,
+    member TEXT NOT NULL
+);
+
+addMemberToChat:
+INSERT OR REPLACE INTO MutlipleChat VALUES (?, ?, ?);
+
+getChatWithMembersByChatId:
+SELECT * FROM  MutlipleChat WHERE chatId = :chatId;
+
+clear:
+DELETE FROM MutlipleChat;
